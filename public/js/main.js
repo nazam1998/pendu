@@ -15,6 +15,9 @@ let trouve = document.getElementById('trouve');
 let essai = document.getElementById('essai');
 let membre = document.getElementsByClassName('membre');
 let util = document.getElementById('utilise');
+let input = document.getElementsByTagName('input')[0];
+console.log(input);
+
 // Va créer un tableau qui contiendra le mot
 lettreSol.forEach(e => {
     if (e != ' ') {
@@ -34,8 +37,12 @@ for (let i = 0; i < membre.length; i++) {
 // le jeu qui va boucler tant qu'on a pas la bonne réponse ou qu'on a des essais
 do {
     afficher();
-    let propo = prompt('Veuillez entrer une lettre: ').toLowerCase();
-    placer(propo);
+    input.addEventListener('keypress', event => {
+        if (event.key == 'Enter') {
+            let propo = event.target;
+            placer(propo);
+        }
+    });
 } while (essais > 0 && lettreSol.join('') != rep.join(''));
 
 afficher();
