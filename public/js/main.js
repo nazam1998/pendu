@@ -8,7 +8,7 @@ solution = solution.toLowerCase();
 let lettreSol = solution.split('');
 
 let utilise = [];
-let essais = 6;
+let essais = 4;
 let rep = [];
 
 let trouve = document.getElementById('trouve');
@@ -16,7 +16,6 @@ let essai = document.getElementById('essai');
 let membre = document.getElementsByClassName('membre');
 let util = document.getElementById('utilise');
 let input = document.getElementsByTagName('input')[0];
-console.log(input);
 
 // Va créer un tableau qui contiendra le mot
 lettreSol.forEach(e => {
@@ -39,15 +38,24 @@ for (let i = 0; i < membre.length; i++) {
 afficher();
 input.addEventListener('keypress', event => {
     let propo = event.target.value;
-    if (event.key == 'Enter') {
-        placer(propo);
-        afficher();
-        input.value = '';
-        if (lettreSol.join('') == rep.join('')) {
-            alert('Bravo! Vous avez réussi');
-        } else if (essais == 0) {
-            alert('Dommage! Vous avez raté');
+    if (event.key == 'Enter' && essais > 0 && lettreSol.join('') != rep.join('')) {
+        if (propo.length > 1) {
+            alert("Une seule lettre!");
+            input.value = '';
+        } else {
 
+            placer(propo);
+            afficher();
+            input.value = '';
+            if (lettreSol.join('') == rep.join('')) {
+                alert('Bravo! Vous avez réussi');
+            } else if (essais == 0) {
+                alert('Dommage! Vous avez raté');
+                for (let i = 0; i < membre.length; i++) {
+                    membre[i].classList.add('move');
+                }
+
+            }
         }
     }
 });
@@ -82,10 +90,10 @@ function placer(lettre) {
             });
         } else {
             essais--;
-            membre[essais - 2].classList.remove('d-none');
+            membre[essais].classList.remove('d-none');
         }
         utilise.push(lettre);
     } else {
-        console.log('Vous avez déjà utilisé cette lettre.');
+        alert('Vous avez déjà utilisé cette lettre.');
     }
 }

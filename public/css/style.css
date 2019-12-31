@@ -1,6 +1,8 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 .membre {
   position: absolute;
+  transition: ease 3s;
+  transform: rotate(0deg);
 }
 
 #head {
@@ -54,10 +56,15 @@
 .text {
   margin-top: 800px;
   text-align: center;
-  font-size: 20px;
+  font-size: 25px;
 }
 .text input {
   margin-top: 10px;
+}
+
+.move {
+  margin-left: 600px;
+  color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
