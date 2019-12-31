@@ -1,4 +1,4 @@
-let mot = ['hello', 'Molengeek', 'coding', 'sushi', 'javascript'];
+let mot = ['hello', 'Molengeek', 'coding', 'sushi', 'javascript', 'notre coding est nulle'];
 
 let r = Math.floor(Math.random() * mot.length);
 
@@ -54,7 +54,6 @@ input.addEventListener('keypress', event => {
                 for (let i = 0; i < membre.length; i++) {
                     membre[i].classList.add('move');
                 }
-
             }
         }
     }
