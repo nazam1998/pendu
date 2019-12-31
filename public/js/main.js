@@ -35,30 +35,38 @@ for (let i = 0; i < membre.length; i++) {
 
 
 // le jeu qui va boucler tant qu'on a pas la bonne réponse ou qu'on a des essais
-do {
-    afficher();
-    input.addEventListener('keypress', event => {
-        if (event.key == 'Enter') {
-            let propo = event.target;
-            placer(propo);
-        }
-    });
-} while (essais > 0 && lettreSol.join('') != rep.join(''));
-
+// do {
 afficher();
-if (lettreSol.join('') == rep.join('')) {
-    alert('Bravo! Vous avez réussi');
-} else {
-    alert('Dommage! Vous avez raté');
+input.addEventListener('keypress', event => {
+    let propo = event.target.value;
+    if (event.key == 'Enter') {
+        placer(propo);
+        afficher();
+        input.value = '';
+        if (lettreSol.join('') == rep.join('')) {
+            alert('Bravo! Vous avez réussi');
+        } else if (essais == 0) {
+            alert('Dommage! Vous avez raté');
 
-}
+        }
+    }
+});
+// } while (essais > 0 && lettreSol.join('') != rep.join(''));
+
+// afficher();
+// if (lettreSol.join('') == rep.join('')) {
+//     alert('Bravo! Vous avez réussi');
+// } else {
+//     alert('Dommage! Vous avez raté');
+
+// }
 
 // Va afficher le mot et les lettres utilisées et le nombre d'essais
 
 function afficher() {
-    trouve.innerText = rep.join(' ') + '\n';
-    essai.innerText = `Nombre d'essais restant : ${essais}` + '\n';
-    util.innerText = 'Lettre déjà utilisées : ' + utilise.join(' ') + '\n';
+    trouve.innerHTML = rep.join(' ');
+    essai.innerText = `Nombre d'essais restant : ${essais}`;
+    util.innerText = 'Lettres déjà utilisées : ' + utilise.join(' ');
 
 }
 
